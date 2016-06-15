@@ -1,7 +1,0 @@
-<manifest
-    package="com.sw926.imagefileselector"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-</manifest>
