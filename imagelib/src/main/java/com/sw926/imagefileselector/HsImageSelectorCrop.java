@@ -21,7 +21,7 @@ public class HsImageSelectorCrop {
 
     private Callback mCallback;
     private ImagePickHelper mImagePickHelper;
-    private ImageCaptureHelper mImageTaker;
+    private HsImageCaptureHelper mImageTaker;
 
     public HsImageSelectorCrop(final Context context) {
         mImagePickHelper = new ImagePickHelper(context);
@@ -38,7 +38,7 @@ public class HsImageSelectorCrop {
             }
         });
 
-        mImageTaker = new ImageCaptureHelper();
+        mImageTaker = new HsImageCaptureHelper();
         mImageTaker.setCallback(new ImageCaptureHelper.Callback() {
             @Override
             public void onSuccess(String file) {
@@ -65,6 +65,7 @@ public class HsImageSelectorCrop {
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         mImagePickHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mImageTaker.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public void onSaveInstanceState(Bundle outState) {
@@ -85,7 +86,7 @@ public class HsImageSelectorCrop {
 
 
     public void takePhoto(Activity activity) {
-        mImageTaker.captureImage(activity);
+        mImageTaker.captureImageHs(activity);
     }
 
 

@@ -122,4 +122,8 @@ public class HsImageCropper extends ImageCropper {
         hsImageSelectorCrop.onRestoreInstanceState(savedInstanceState);
     }
 
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        hsImageSelectorCrop.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 }
