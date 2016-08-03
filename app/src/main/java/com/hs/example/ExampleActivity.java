@@ -150,6 +150,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mImageFileSelector.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mImageCropper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void initImageFileSelector() {
