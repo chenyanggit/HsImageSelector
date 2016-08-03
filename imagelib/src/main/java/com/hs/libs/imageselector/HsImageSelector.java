@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.sw926.imagefileselector.ImageFileSelector;
+import com.sw926.imagefileselector.ImageFileSelectorNew;
 
 
 /**
  * Created by huasheng on 16/6/13.
  */
-public class HsImageSelector extends ImageFileSelector {
+public class HsImageSelector extends ImageFileSelectorNew {
     private int maxWidth = 1280;
     private int maxHeight = 1280;
     private int quality = 80;
