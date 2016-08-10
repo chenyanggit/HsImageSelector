@@ -46,6 +46,7 @@ public class HsImageSelectorCrop {
                 handleResult(file);
             }
 
+
             @Override
             public void onError() {
                 handleError();
