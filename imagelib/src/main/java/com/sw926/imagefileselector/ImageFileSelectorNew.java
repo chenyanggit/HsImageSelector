@@ -15,7 +15,7 @@ import java.io.File;
  */
 public class ImageFileSelectorNew {
 
-    private static final String TAG = ImageFileSelector.class.getSimpleName();
+    private static final String TAG = ImageFileSelectorNew.class.getSimpleName();
 
     private Callback mCallback;
     private ImagePickHelper mImagePickHelper;
@@ -104,8 +104,11 @@ public class ImageFileSelectorNew {
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        mImagePickHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        mImageTaker.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if( requestCode ==ImagePickHelper.READ_EXTERNAL_STORAGE_REQUEST_CODE){
+            mImagePickHelper.onRequestPermissionsResult(ImagePickHelper.READ_EXTERNAL_STORAGE_REQUEST_CODE, permissions, grantResults);
+        }else if(requestCode ==HsImageCaptureHelper.CAMERA_REQUEST_CODE) {
+            mImageTaker.onRequestPermissionsResult(HsImageCaptureHelper.CAMERA_REQUEST_CODE, permissions, grantResults);
+        }
     }
 
     public void onSaveInstanceState(Bundle outState) {
@@ -121,7 +124,7 @@ public class ImageFileSelectorNew {
     }
 
     public void selectImage(Activity activity) {
-        mImagePickHelper.selectorImage(activity);
+        mImagePickHelper.selectorImage(activity,ImagePickHelper.READ_EXTERNAL_STORAGE_REQUEST_CODE);
     }
 
     public void selectImage(android.support.v4.app.Fragment fragment) {
@@ -133,7 +136,7 @@ public class ImageFileSelectorNew {
     }
 
     public void takePhoto(Activity activity) {
-        mImageTaker.captureImageHs(activity);
+        mImageTaker.captureImageHs(activity,HsImageCaptureHelper.CAMERA_REQUEST_CODE);
     }
 
     public void takePhoto(android.support.v4.app.Fragment fragment) {

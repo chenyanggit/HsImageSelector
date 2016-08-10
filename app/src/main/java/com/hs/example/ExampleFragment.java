@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sw926.imagefileselector.ImageCropper;
-import com.sw926.imagefileselector.ImageFileSelector;
+import com.sw926.imagefileselector.ImageFileSelectorNew;
 
 import java.io.File;
 
@@ -29,7 +29,7 @@ public class ExampleFragment extends Fragment implements View.OnClickListener {
 
     private ImageView mImageView;
     private TextView mTvPath;
-    private ImageFileSelector mImageFileSelector;
+    private ImageFileSelectorNew mImageFileSelector;
 
     private EditText mEtWidth;
     private EditText mEtHeight;
@@ -65,8 +65,8 @@ public class ExampleFragment extends Fragment implements View.OnClickListener {
         mEtHeight = (EditText) view.findViewById(R.id.et_height);
         mBtnCrop = (Button) view.findViewById(R.id.btn_crop);
 
-        mImageFileSelector = new ImageFileSelector(getContext());
-        mImageFileSelector.setCallback(new ImageFileSelector.Callback() {
+        mImageFileSelector = new ImageFileSelectorNew(getContext());
+        mImageFileSelector.setCallback(new ImageFileSelectorNew.Callback() {
             @Override
             public void onSuccess(final String file) {
                 if (!TextUtils.isEmpty(file)) {

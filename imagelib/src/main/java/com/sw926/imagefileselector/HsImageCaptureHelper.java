@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 /**
  * Created by huasheng on 16/8/3.
@@ -14,18 +15,19 @@ import android.support.v4.content.ContextCompat;
  */
 public class HsImageCaptureHelper extends  ImageCaptureHelper{
 
-    private static final int CAMERA_REQUEST_CODE = 0x12;
+    public static final int CAMERA_REQUEST_CODE = 0x21;
+    public static final int CAMERA_REQUEST_CODE_CROP = 0x22;
 
     private  Activity activity =null;
 
-    public void captureImageHs(Activity activity) {
+    public void captureImageHs(Activity activity,int permissioncode) {
         if (Build.VERSION.SDK_INT >= 16) {
             if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 this.activity = activity;
                 //申请WRITE_EXTERNAL_STORAGE权限
                 ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA},
-                        CAMERA_REQUEST_CODE);
+                        permissioncode);
             } else {
                 captureImage(activity);
             }
@@ -35,9 +37,16 @@ public class HsImageCaptureHelper extends  ImageCaptureHelper{
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == CAMERA_REQUEST_CODE) {
+         if (requestCode == CAMERA_REQUEST_CODE) {
+             Log.e("cy","onRequestPermissionsResult CAMERA_REQUEST_CODE");
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                captureImageHs(activity);
+                captureImageHs(activity,CAMERA_REQUEST_CODE);
+                return;
+            }
+        }else if (requestCode == CAMERA_REQUEST_CODE_CROP) {
+             Log.e("cy","onRequestPermissionsResult CAMERA_REQUEST_CODE_CROP");
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                captureImageHs(activity,CAMERA_REQUEST_CODE_CROP);
                 return;
             }
         }

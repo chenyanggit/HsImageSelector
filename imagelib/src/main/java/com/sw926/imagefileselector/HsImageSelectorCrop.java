@@ -17,7 +17,7 @@ public class HsImageSelectorCrop {
         setCallback(callback);
     }
 
-    private static final String TAG = ImageFileSelector.class.getSimpleName();
+    private static final String TAG = HsImageSelectorCrop.class.getSimpleName();
 
     private Callback mCallback;
     private ImagePickHelper mImagePickHelper;
@@ -64,8 +64,11 @@ public class HsImageSelectorCrop {
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        mImagePickHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        mImageTaker.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode ==ImagePickHelper.READ_EXTERNAL_STORAGE_REQUEST_CODE_CROP ){
+            mImagePickHelper.onRequestPermissionsResult(ImagePickHelper.READ_EXTERNAL_STORAGE_REQUEST_CODE_CROP, permissions, grantResults);
+        }else if(requestCode ==HsImageCaptureHelper.CAMERA_REQUEST_CODE_CROP){
+            mImageTaker.onRequestPermissionsResult(HsImageCaptureHelper.CAMERA_REQUEST_CODE_CROP, permissions, grantResults);
+        }
     }
 
     public void onSaveInstanceState(Bundle outState) {
@@ -81,12 +84,12 @@ public class HsImageSelectorCrop {
     }
 
     public void selectImage(Activity activity) {
-        mImagePickHelper.selectorImage(activity);
+        mImagePickHelper.selectorImage(activity,ImagePickHelper.READ_EXTERNAL_STORAGE_REQUEST_CODE_CROP);
     }
 
 
     public void takePhoto(Activity activity) {
-        mImageTaker.captureImageHs(activity);
+        mImageTaker.captureImageHs(activity,HsImageCaptureHelper.CAMERA_REQUEST_CODE_CROP);
     }
 
 

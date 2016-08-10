@@ -17,7 +17,7 @@ import com.hs.libs.imageselector.HsImageCropCallback;
 import com.hs.libs.imageselector.HsImageCropper;
 import com.hs.libs.imageselector.HsImageSelectCallback;
 import com.hs.libs.imageselector.HsImageSelector;
-import com.sw926.imagefileselector.ImageFileSelector;
+import com.sw926.imagefileselector.ImageFileSelectorNew;
 
 import java.io.File;
 
@@ -41,7 +41,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        ImageFileSelector.setDebug(true);
+        ImageFileSelectorNew.setDebug(true);
 
         findViewById(R.id.btn_from_sdcard).setOnClickListener(this);
         findViewById(R.id.btn_from_camera).setOnClickListener(this);
@@ -189,7 +189,7 @@ public class ExampleActivity extends AppCompatActivity implements View.OnClickLi
                 }
 //                    mImageCropper.setOutPut(w, h);
 //                    mImageCropper.setOutPutAspect(2, 4);
-                    mImageCropper.startCrop(HsImageCropper.CROP_CAMERA);
+                    mImageCropper.startCrop(HsImageCropper.CROP_SELECT);
                 break;
             }
         }
